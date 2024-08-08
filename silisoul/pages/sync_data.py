@@ -129,7 +129,7 @@ if st.button("Click to Sync the Latest Uploads"):
 
 
 
-     engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_90northbrands')
+     engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_silisoul')
      db_sales_bar1_final.to_sql(
          name="sales_data_sync", # table name
          con=engine,  # engine
