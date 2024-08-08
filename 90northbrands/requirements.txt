@@ -1,0 +1,8 @@
+streamlit
+pandas
+numpy
+sqlalchemy
+altair
+plotly
+datetime
+psycopg2-binary
