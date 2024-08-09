@@ -46,7 +46,7 @@ with st.container(border=True) :
        st.write(db_settlement.shape)
        db_settlement=db_settlement.drop_duplicates()
        st.write(db_settlement.shape)
-       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/myntra_roi')
+       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_silisoul')
        db_settlement.to_sql(
         name="final_settlement", # table name
         con=engine,  # engine
@@ -87,7 +87,7 @@ with st.container(border=True) :
        st.write(db_sales.shape)
        db_sales=db_sales.drop_duplicates()
        st.write(db_sales.shape)
-       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/myntra_roi')
+       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_silisoul')
        db_sales.to_sql(
         name="final_sales", # table name
         con=engine,  # engine
@@ -117,7 +117,7 @@ with st.container(border=True) :
        db_master.columns = [x.lower() for x in db_master.columns]
        db_master=pd.concat([db_master,db_master_original],ignore_index=True)
        db_master=db_master.drop_duplicates()
-       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_90northbrands')
+       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_silisoul')
        db_master.to_sql(
         name="styles_master", # table name
         con=engine,  # engine
@@ -148,7 +148,7 @@ with st.container(border=True) :
        db_action.columns = [x.lower() for x in db_action.columns]
        db_action=pd.concat([db_action,db_action_original],ignore_index=True)
        db_action=db_action.drop_duplicates()
-       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_90northbrands')
+       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_silisoul')
        db_action.to_sql(
         name="styles_action", # table name
         con=engine,  # engine
@@ -178,7 +178,7 @@ with st.container(border=True) :
        db_actual_action.columns = [x.lower() for x in db_actual_action.columns]
        db_actual_action=pd.concat([db_actual_action,db_actual_action_original],ignore_index=True)
        db_actual_action=db_actual_action.drop_duplicates()
-       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_90northbrands')
+       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_silisoul')
        db_actual_action.to_sql(
         name="actual_actions", # table name
         con=engine,  # engine
