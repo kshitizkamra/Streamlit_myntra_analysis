@@ -46,7 +46,7 @@ with st.container(border=True) :
        st.write(db_settlement.shape)
        db_settlement=db_settlement.drop_duplicates()
        st.write(db_settlement.shape)
-       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/myntra_roi')
+       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_90northbrands')
        db_settlement.to_sql(
         name="final_settlement", # table name
         con=engine,  # engine
@@ -87,7 +87,7 @@ with st.container(border=True) :
        st.write(db_sales.shape)
        db_sales=db_sales.drop_duplicates()
        st.write(db_sales.shape)
-       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/myntra_roi')
+       engine = create_engine('postgresql://90northbrands:90northbrands@34.41.36.17:5432/db_90northbrands')
        db_sales.to_sql(
         name="final_sales", # table name
         con=engine,  # engine
