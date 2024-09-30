@@ -1849,9 +1849,9 @@ except :
                             
                         
     with tab_trial :
-        db_data=conn.query("select * from final_data;")
-        db_sales_data=conn.query("select * from final_sales")
-        db_data
+         db_data=conn.query("select * from final_data;")
+         db_sales_data=conn.query("select * from final_sales")
+         db_data
          with st.container(border=True) :
             st.subheader("latlong")
             col1, col2 = st.columns([2,1],gap="small")
