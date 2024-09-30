@@ -221,26 +221,21 @@ except :
                             recommendation_bar.progress(y/total_recommendation_files, text="Uploading")
                             df = pd.read_csv(filename, index_col=None, header=0)
                             df.columns = [x.lower() for x in df.columns]
-                            try:
-                                    df1=df[['ros','roi','return %','selling_price','pla','replenishment','remarks']].copy()
-                            except:
-                                        st.write(str(filename.name)+" not uploaded, wrong format")
-                                
-                            db_recommendation = pd.concat([db_recommendation, df1], ignore_index=True, sort=False)
+                            
                             
                         recommendation_bar.empty()
                         st.write("Uploaded Successfully")    
-                db_recommendation=db_recommendation.drop_duplicates()
+                
                 
                 try:
-                    db_recommendation.to_sql(
+                    df.to_sql(
                     name="action_items_manual", # table name
                     con=engine,  # engine
                     if_exists="append", #  If the table already exists, append
                     index=False # no index
                     )        
                 except :
-                    db_recommendation.to_sql(
+                    df.to_sql(
                     name="action_items_manual", # table name
                     con=engine,  # engine
                     if_exists="replace", #  If the table already exists, append
