@@ -79,7 +79,7 @@ with col3:
                     st.session_state["login_check"]=1
 
 if st.session_state['login_check']==1 :
-    tab_so,tab_pnl,tab_sr,tab_sa,tab_exp,tab_imp,tab_sync,tab_trial=st.tabs(["Sales Overview","P&L","Style_Review","Suggested Actions","Export_data","Import_data","Sync_data","trial"])
+    tab_imp,tab_sync,tab_trial,tab_so,tab_pnl,tab_sr,tab_sa,tab_exp=st.tabs(["Sales Overview","P&L","Style_Review","Suggested Actions","Export_data","Import_data","Sync_data","trial"])
 else :
     home,about_us=st.tabs(["Home","About Us"])
 
