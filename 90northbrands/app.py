@@ -737,7 +737,7 @@ except :
          db_action_items_suggestion=conn.query("select * from action_items_suggestion" )
          db_action_items_manual=pd.DataFrame()
         db_action_items=pd.concat([db_action_items_manual, db_action_items_suggestion], ignore_index=True, sort=False)
-        db_action_items.sort_values(by=['date_updated'],inplace=True,ascending=False)
+        # db_action_items.sort_values(by=['date_updated'],inplace=True,ascending=False)
         db_action_items.drop_duplicates(subset=['vendor_style_code','channel'],inplace=True)
         db_action_items.reset_index(inplace=True)
         db_action_items.drop(['index'],inplace=True,axis=1)
