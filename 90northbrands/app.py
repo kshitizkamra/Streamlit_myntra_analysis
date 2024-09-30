@@ -632,6 +632,55 @@ except :
              except :
                 st.write("something went wrong, please contact administrator")    
 
+        with tab_trial :
+        
+         with st.container(border=True) :
+            st.subheader("latlong")
+            col1, col2 = st.columns([2,1],gap="small")
+            with col1:
+                uploaded_lat_long = st.file_uploader(
+                "Upload recommendation File ", accept_multiple_files=True
+                )
+
+            with col2 :
+                
+                
+                st.write("")
+                st.write("")
+                subcol1,subcol2,subcol3=st.columns([2,3,2],gap="small")
+                with subcol2 :
+                    if st.button('Upload',key="lat_long_btn"):
+                        recommendation_bar = st.progress(0, text="Uploading")
+                        st.cache_data.clear()
+                        total_recommendation_files=len(uploaded_lat_long)
+                        y=0
+                        
+                        for filename in uploaded_lat_long:
+                            y=y+1
+                            recommendation_bar.progress(y/total_recommendation_files, text="Uploading")
+                            df = pd.read_csv(filename, index_col=None, header=0)
+                            df.columns = [x.lower() for x in df.columns]
+                            
+                        recommendation_bar.empty()
+                        st.write("Uploaded Successfully")    
+                
+                try:
+                    df.to_sql(
+                    name="latlong", # table name
+                    con=engine,  # engine
+                    if_exists="append", #  If the table already exists, append
+                    index=False # no index
+                    )        
+                except :
+                    df.to_sql(
+                    name="latlong", # table name
+                    con=engine,  # engine
+                    if_exists="replace", #  If the table already exists, append
+                    index=False # no index
+                    )
+
+
+    
     with tab_so:
         
 
@@ -1747,53 +1796,6 @@ except :
     
                             
                         
-    with tab_trial :
-        
-         with st.container(border=True) :
-            st.subheader("latlong")
-            col1, col2 = st.columns([2,1],gap="small")
-            with col1:
-                uploaded_lat_long = st.file_uploader(
-                "Upload recommendation File ", accept_multiple_files=True
-                )
-
-            with col2 :
-                
-                
-                st.write("")
-                st.write("")
-                subcol1,subcol2,subcol3=st.columns([2,3,2],gap="small")
-                with subcol2 :
-                    if st.button('Upload',key="lat_long_btn"):
-                        recommendation_bar = st.progress(0, text="Uploading")
-                        st.cache_data.clear()
-                        total_recommendation_files=len(uploaded_lat_long)
-                        y=0
-                        
-                        for filename in uploaded_lat_long:
-                            y=y+1
-                            recommendation_bar.progress(y/total_recommendation_files, text="Uploading")
-                            df = pd.read_csv(filename, index_col=None, header=0)
-                            df.columns = [x.lower() for x in df.columns]
-                            
-                        recommendation_bar.empty()
-                        st.write("Uploaded Successfully")    
-                
-                try:
-                    df.to_sql(
-                    name="latlong", # table name
-                    con=engine,  # engine
-                    if_exists="append", #  If the table already exists, append
-                    index=False # no index
-                    )        
-                except :
-                    df.to_sql(
-                    name="latlong", # table name
-                    con=engine,  # engine
-                    if_exists="replace", #  If the table already exists, append
-                    index=False # no index
-                    )
-
 
                             
 
