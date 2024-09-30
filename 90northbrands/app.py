@@ -92,7 +92,7 @@ except :
     db_data=conn.query("select * from final_data;")
     db_sales_data=conn.query("select * from final_sales")
     db_sales_data_for_side_filter=conn.query("select * from final_sales")
-    db_latlong=conn.query("select * from latlong")
+    # db_latlong=conn.query("select * from latlong")
     st.markdown("""
         <style>
                .block-container {
