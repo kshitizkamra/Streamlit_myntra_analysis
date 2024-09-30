@@ -89,7 +89,7 @@ try :
 
 except :
     conn = st.connection("my_database")
-    
+    df=pd.Dataframe()
                         
     with tab_trial :
          with st.container(border=True) :
