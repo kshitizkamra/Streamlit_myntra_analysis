@@ -67,6 +67,7 @@ def check_password():
 col1,col2,col3=st.columns([4,1,5])
 with col2 :
     # st.image("assets/logo.png",width=150)
+    st.write("")
 with col3:
     col5,col6=st.columns([3,2])
     with col6:
