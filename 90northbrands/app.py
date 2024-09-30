@@ -5,7 +5,7 @@ import numpy as np
 import sys
 import glob
 import os
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine,MetaData,Table, Column, Numeric, Integer, VARCHAR, update,insert,text
 import altair as alt
 import plotly.express as px
 import datetime
