@@ -638,7 +638,7 @@ except :
             st.subheader("latlong")
             col1, col2 = st.columns([2,1],gap="small")
             with col1:
-                uploaded_lat_long = st.file_uploader(
+                uploaded_lat_long_1 = st.file_uploader(
                 "Upload recommendation File ", accept_multiple_files=True
                 )
 
@@ -652,10 +652,10 @@ except :
                     if st.button('Upload',key="lat_long_btn"):
                         recommendation_bar = st.progress(0, text="Uploading")
                         st.cache_data.clear()
-                        total_recommendation_files=len(uploaded_lat_long)
+                        total_recommendation_files=len(uploaded_lat_long_1)
                         y=0
                         
-                        for filename in uploaded_lat_long:
+                        for filename in uploaded_lat_long_1:
                             y=y+1
                             recommendation_bar.progress(y/total_recommendation_files, text="Uploading")
                             df = pd.read_csv(filename, index_col=None, header=0)
