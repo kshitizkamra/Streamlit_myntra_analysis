@@ -194,6 +194,60 @@ except :
             article_type_list,
             )
     with tab_so:
+
+        with st.container(border=True) :
+            st.subheader("Recommendations")
+            col1, col2 = st.columns([2,1],gap="small")
+            with col1:
+                uploaded_manual_action = st.file_uploader(
+                "Upload recommendation File ", accept_multiple_files=True
+                )
+
+            with col2 :
+                
+                
+                st.write("")
+                st.write("")
+                subcol1,subcol2,subcol3=st.columns([2,3,2],gap="small")
+                with subcol2 :
+                    if st.button('Upload',key="recommendation_btn"):
+                        recommendation_bar = st.progress(0, text="Uploading")
+                        st.cache_data.clear()
+                        total_recommendation_files=len(uploaded_manual_action)
+                        y=0
+                        
+                        for filename in uploaded_manual_action:
+                            y=y+1
+                            recommendation_bar.progress(y/total_recommendation_files, text="Uploading")
+                            df = pd.read_csv(filename, index_col=None, header=0)
+                            df.columns = [x.lower() for x in df.columns]
+                            try:
+                                    df1=df[['ros','roi','return %','selling_price','pla','replenishment','remarks']].copy()
+                            except:
+                                        st.write(str(filename.name)+" not uploaded, wrong format")
+                                
+                            db_recommendation = pd.concat([db_recommendation, df1], ignore_index=True, sort=False)
+                            
+                        recommendation_bar.empty()
+                        st.write("Uploaded Successfully")    
+                db_recommendation=db_recommendation.drop_duplicates()
+                
+                try:
+                    db_recommendation.to_sql(
+                    name="action_items_manual", # table name
+                    con=engine,  # engine
+                    if_exists="append", #  If the table already exists, append
+                    index=False # no index
+                    )        
+                except :
+                    db_recommendation.to_sql(
+                    name="action_items_manual", # table name
+                    con=engine,  # engine
+                    if_exists="replace", #  If the table already exists, append
+                    index=False # no index
+                    )
+
+
         
 
         st.title ("Sales Overview")
