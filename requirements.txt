@@ -6,3 +6,4 @@ altair
 plotly
 datetime
 psycopg2-binary
+matplotlib
