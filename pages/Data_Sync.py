@@ -23,10 +23,18 @@ engine = create_engine(st.secrets["engine_main"])
 conn = st.connection("my_database")
 
 conn = st.connection("my_database")
-db_data=conn.query("select * from final_data;")
-db_sales_data=conn.query("select * from final_sales")
-db_sales_data_for_side_filter=conn.query("select * from final_sales")
-db_latlong=conn.query("select * from latlong")
+try:
+    db_data=conn.query("select * from final_data;")
+    db_sales_data=conn.query("select * from final_sales")
+    db_sales_data_for_side_filter=conn.query("select * from final_sales")
+    db_latlong=conn.query("select * from latlong")
+except:
+    db_data=pd.DataFrame()
+    db_sales_data=pd.DataFrame()
+    db_sales_data_for_slide=pd.DataFrame()
+    db_latlong=pd.DataFrame()
+
+
 st.markdown("""
     <style>
             .block-container {
